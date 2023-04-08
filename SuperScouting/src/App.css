@@ -1,0 +1,702 @@
+ :root {
+   --accent-1: white;
+   --accent-4: #003800;
+   --background-1: #255025;
+   --accent-default: var(--accent-3);
+   --bg-color: var(--background-1);
+   text-align: center;
+   font-family: system-ui;
+ }
+
+ .textArea {
+   background-color: #ecf2eb;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 20px;
+   margin: 20px;
+   border-radius: 10px;
+ }
+
+ /* Titles, Headers, & Labels */
+
+ .page-title {
+   color: black;
+   font-size: 20px;
+   font-style: italic;
+   font-weight: 400;
+ }
+
+ .section-label {
+   color: white;
+   font-size: 30px;
+   font-weight: bold;
+   margin: 20px;
+ }
+
+ ::placeholder {
+   color: gray;
+   font-size: 15px;
+   font-style: italic;
+   text-align: center;
+ }
+
+ .dropdown {
+   border-color: #085f00;
+   border-width: 50px;
+ }
+
+ .numberInput {
+   border-color: #085f00;
+   border-width: 50px;
+   margin: 10px;
+ }
+
+ body {
+   margin: 0;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: 100;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background-color: var(--bg-color);
+   color: var(--accent-1);
+ }
+
+ select {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   display: block;
+   width: 200px;
+   height: 40px;
+   font-size: 25px;
+   margin: 0 auto;
+ }
+
+ input[type="text"],
+ textarea {
+   border: black 1.5px solid;
+   border-radius: 3.5px;
+   color: black;
+   display: block;
+   font-size: 15px;
+   margin: 0 auto;
+   overflow-wrap: break-word;
+   font-family: system-ui;
+   text-align: center;
+ }
+
+ input[type="text"] {
+   height: 30px;
+   text-align: center;
+ }
+
+ .chonk {
+   display: inline !important;
+   width: 50px !important;
+   height: 32.5px !important;
+   font-size: 25px !important;
+   background-color: #003800;
+ }
+
+ input[type=button].chonk {
+   background-color: #cad3c8;
+   border-width: 2px;
+   border-color: #83c183;
+ }
+
+ .label-number {
+   font-weight: 900;
+   font-size: 17px;
+   color: black;
+ }
+
+ .label-cause {
+   font-weight: 600;
+   font-size: 15px;
+ }
+
+ .label-notes {
+   font-size: 20px;
+   font-weight: 150;
+ }
+
+ .label4 {
+   font-size: 15px;
+   font-weight: 600;
+   color: black;
+ }
+
+ .popupButton {
+   display: inline !important;
+   width: 100px;
+   height: 50px;
+   font-size: 20px;
+   font-weight: 500;
+   background-color: rgb(4, 206, 4);
+   font-family: system-ui;
+   border-radius: 5px;
+   border: rgb(4, 206, 4) 2px solid;
+   margin: 10px;
+ }
+
+ input[type="checkbox"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   width: 10%;
+   height: 20px;
+   font-size: 15px;
+   display: inline;
+   color: black;
+   vertical-align: middle;
+ }
+
+ input[type="radio"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   width: 50px;
+   height: 20px;
+   display: inline;
+ }
+
+ input[type="number"] {
+   display: inline !important;
+   background-color: var(--accent-1);
+   width: 30%;
+   font-size: 25px;
+   font-weight: 600;
+   text-align: center;
+   border: black 1.5px solid;
+   border-radius: 3.5px;
+   color: black;
+   margin: 0 auto;
+   height: 35px;
+   text-align: center;
+ }
+
+ .SAVE,
+ .CLEAR {
+   display: inline-block;
+   width: 300px;
+   height: 35px;
+   font-size: 20px;
+   margin: 15px;
+   border-radius: 30px;
+ }
+
+ .SAVE {
+   background-color: #83c183;
+   margin-bottom: 10px;
+
+ }
+
+ .CLEAR {
+   border-color: var(--accent-3);
+   background-color: red;
+   /*Make this color better*/
+ }
+
+ .savept2 {
+   display: inline-block;
+   width: 250px !important;
+   height: 35px;
+   font-size: 25px;
+   border-color: var(--accent-3);
+   background-color: var(--accent-2);
+ }
+
+ .radioButtons {
+   display: inline-block;
+   text-align: left;
+ }
+
+ .gallery {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   margin: 0 auto;
+   padding: 10px 0;
+ }
+
+ .team {
+   height: fit-content;
+ }
+
+ .motors,
+ .batteries {
+   padding: 10px;
+   min-width: 190px;
+ }
+
+ .motorType,
+ .autos,
+ .workingOn {
+   padding: 10px;
+   min-width: fit-content;
+   font: 15px;
+ }
+
+ .generalLabel {
+   font-size: 20px;
+   color: black;
+   font-weight: 300;
+   padding: 0px;
+   margin: 10px auto;
+   display: inline-block;
+ }
+
+ .generalButton {
+   width: fit-content;
+   height: 20%;
+   font-size: 15px;
+   font-weight: 550;
+   margin: 0 auto;
+   display: block;
+ }
+
+ .photoSelect {
+   color: black;
+   font-size: 60px;
+ }
+
+ .photoInput {
+   max-height: 300px;
+   max-width: 300px;
+ }
+
+ .test2 {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   align-content: stretch;
+ }
+
+ .foul {
+   background-color: #b2daa1;
+   color: white;
+   box-sizing: border-box;
+   padding: 10px;
+   min-width: fit-content;
+   width: 200px;
+   border-radius: 10px;
+   display: inline-block;
+   margin: 15px;
+   flex-grow: 1;
+   inline-size: 130px;
+   overflow-wrap: break-word;
+ }
+
+ .fouls {
+   margin: 0 auto;
+   width: 75%;
+ }
+
+ .allianceSelect .number-off,
+ .content .number-off {
+   background-color: #87bd87;
+   color: white;
+   font-weight: 600;
+   border: 1.5px darkgreen solid;
+ }
+
+ .allianceSelect .number-on,
+ .content .number-on {
+   background-color: rgb(5, 255, 5);
+   color: black;
+   font-weight: 600;
+   border: 1.5px black solid;
+ }
+
+ .number-on,
+ .number-off {
+   display: inline !important;
+   width: 100px;
+   font-size: 15px;
+   text-align: center;
+   border-radius: 7px;
+   font-weight: 600;
+   padding: 5px;
+   margin: 5px;
+ }
+
+ .submit-button {
+   background-color: #83c183;
+   width: 400px;
+   height: 40px;
+   font-size: 25px;
+   margin: 25px;
+   border-radius: 30px;
+   font-family: system-ui;
+ }
+
+ .save-button,
+ .download-button,
+ .clear-button {
+   color: black;
+   font-size: 15px !important;
+   font-weight: 700;
+   display: inline !important;
+   width: 170px;
+   height: 40px !important;
+   border: none;
+   border-radius: 30px;
+   margin: 15px;
+ }
+
+ .save-button {
+   background-color: #83c183;
+ }
+
+ .download-button {
+   background-color: rgba(0, 183, 255, 0.637);
+ }
+
+ .clear-button {
+   background-color: rgba(255, 0, 0, 0.637);
+ }
+
+ .nonSubmit {
+   background-color: gray;
+   border-radius: 30px;
+   width: 90%;
+   margin: 0 auto;
+   padding: 5px;
+ }
+
+ .reminder {
+   font-size: 15px;
+   color: white;
+   font-weight: 600;
+   padding: 1px;
+ }
+
+ .workingOn input[type="text"] {
+   width: 600px;
+   height: 50px;
+ }
+
+ .autos input[type="text"],
+ .motorType input[type="text"] {
+   width: 200px;
+   height: 50px;
+ }
+
+ .smallLabel {
+   color: darkgreen;
+   font-weight: 700;
+   font-size: 20px;
+ }
+
+ .topNote {
+   font-weight: 500;
+   font-style: italic;
+   color: darkgreen;
+ }
+
+ .team input[type="number"] {
+   width: 150px !important;
+ }
+
+ .textArea input[type="text"] {
+   font-size: 20px;
+   font-weight: 700;
+ }
+
+ .motorType textarea,
+ .autos textarea {
+   font-size: 20px;
+   font-weight: 400;
+ }
+
+ .test2 .team input[type="text"] {
+   font-weight: 900;
+   color: rgb(0, 0, 0);
+   text-align: center;
+   font-size: 30px;
+   width: 45%;
+ }
+
+ .textArea input[type="submit"]:active {
+   background-color: darkgreen;
+ }
+
+ .check {
+   width: 50px;
+   height: 20px;
+   border-left: 10px solid green;
+   border-bottom: 10px solid green;
+   transform: rotate(-45deg);
+   margin-left: 70%;
+   margin-bottom: 50%;
+   position: absolute;
+ }
+
+ .popup-overlay .popup-content {
+   background-color: #b2daa1;
+   border-radius: 15px;
+   border: 0px;
+ }
+
+ .content {
+   height: fit-content;
+   padding: 10px;
+   margin: 10px;
+ }
+
+ .content .number-off,
+ .content .number-on {
+   font-size: 25px;
+   border: 0px black solid;
+ }
+
+ .content .number-off {
+   background-color: #085f00;
+ }
+
+ .content textarea {
+   font-size: 25px;
+ }
+
+ .subButton button {
+   background-color: #085f00;
+   font-size: 20px;
+   border-radius: 15px;
+   padding: 10px;
+   border: #085f00 3px solid;
+   color: white;
+ }
+
+ select {
+   font-size: 20px;
+ }
+
+ .label-size {
+   font-size: 15px;
+   padding: 2px;
+   width: fit-content;
+   font-weight: 400;
+   margin: 0 auto;
+   margin-bottom: 5px;
+ }
+
+ .nav {
+   background-color: green;
+   font-family: system-ui;
+   font-size: 30px;
+   font-weight: 600;
+   padding: 7px;
+   border: 2px solid green;
+   margin: 5px;
+ }
+
+ .nav:focus {
+   background-color: lightgreen;
+   border: 2px solid lightgreen;
+ }
+
+ .login {
+   width: 70px;
+   display: inline-block;
+   display: inline-block !important;
+   padding: 5px;
+   margin: 10px !important;
+ }
+
+ .loginButtons {
+   width: 500px;
+   margin: 0 auto;
+   padding: 10px;
+ }
+
+ .login,
+ .popupButton {
+   display: block;
+ }
+
+ .team1,
+ .team2,
+ .team3 {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   box-sizing: border-box;
+   padding: 10px;
+   width: 200px;
+   border-radius: 10px;
+   display: inline-block;
+   max-height: fit-content;
+   background-color: #255025;
+   margin: 0 auto;
+ }
+
+ .boxes {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   align-content: stretch;
+   width: 90%;
+   margin: 0 auto;
+   min-width: fit-content;
+   align-content: center;
+ }
+
+ .label-title {
+   font-size: 35px;
+   font-weight: 500;
+   color: #085f00;
+ }
+
+ .check {
+   width: 50px;
+   height: 20px;
+   border-left: 10px solid green;
+   border-bottom: 10px solid green;
+   transform: rotate(-45deg);
+   margin-left: 70%;
+   margin-bottom: 50%;
+   position: absolute;
+ }
+
+ .testest .teamSearch {
+   font-weight: 600;
+   font-size: 15px;
+   background-color: orange;
+ }
+
+ .css-b62m3t-container {
+   color: darkgreen;
+   font-weight: 700;
+   font-size: 18px;
+ }
+
+ .frame {
+   display: none;
+ }
+
+ .check {
+   width: 50px;
+   height: 20px;
+   border-left: 10px solid green;
+   border-bottom: 10px solid green;
+   transform: rotate(-45deg);
+   margin-left: 70%;
+   margin-bottom: 50%;
+   position: absolute;
+ }
+
+ .connerror {
+   color: red;
+   font-weight: bold;
+   margin: 0;
+   font-size: 1.5em;
+ }
+
+ textarea {
+   resize: none;
+   box-sizing: border-box;
+ }
+
+ .comments {
+   background-color: #ecf2eb;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 20px;
+   margin: 20px;
+   border-radius: 10px;
+ }
+
+ .commentlabel {
+   font-size: 20px;
+   color: white;
+   font-weight: 400;
+   padding: 0px;
+   margin: 10px auto;
+   display: inline-block;
+ }
+
+ .checkboxcss {
+   color: black;
+ }
+ .deleteButton, .editButton {
+  display: inline;
+}
+
+ .deleteButton input[type="button"], 
+ .editButton input[type="button"] {
+  font-size: 14px;
+
+  border: 0px black solid;
+  border-radius: 3px;
+  padding: 4px;
+  display: inline;
+  margin: 2px;
+  width: 50px;
+  height: 30px;
+  font-weight: 500;
+ }
+
+ .editButton input[type="button"] {
+  background-color: rgba(255, 0, 191, 0.562);
+ }
+
+ .deleteButton input[type="button"] {
+  background-color: rgba(255, 0, 0, 0.717);
+ }
+
+.driverSkill{
+  background-color:#4a6fa1;
+ margin-top: 10px;
+ padding: 10px;
+ font-weight: 400;
+ border-radius: 7px;
+
+
+}
+
+.driverSkill .number-on,
+.driverSkill .number-off{
+  font-size: 15px;
+  
+  /* transition: 0.2s; */
+
+  background-color: gray;
+  color: darkblue;
+  width: 22px;
+  height: 30px;
+  border: none;
+}
+
+.driverSkill .number-on {
+  background-color: darkblue;
+  color: lightgray;
+  
+}
+
+.natalie {
+  background-color: teal;
+  color: black;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.josiah {
+  background-color: fuchsia;
+  font: black;
+  font-weight: 900;
+  font-size: 100px;
+  border-radius: 50%;
+}
+
+.kyle {
+  background-color: orange;
+  font: black;
+  font-weight: 900;
+  width: 500px;
+  margin: 0 auto;
+  height: 100px;
+  padding: 100px;
+  margin-top: 15px;
+
+
+}

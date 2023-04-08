@@ -1,5 +1,6 @@
-import { RadioButtons, NumberInput, ButtonInput} from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
 import './App.css';
+import { useEffect, useState } from "react";
 
 function Page(props) {
     return (
@@ -12,73 +13,93 @@ function Page(props) {
 function Navigation(props) {
     return (
         <Page selected={props.selected} className="page" id="navigation">
-            <ul>
-                <li><a href="#SignIn">Sign-In</a></li>
-                <li><a href="#Pre">Pre-Game</a></li>
-                <li><a href="#Auto">Auto</a></li>
-                <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#Save">Save</a></li>
-            </ul>
+            <div>
+                <ul>
+                    <li><a href="#SignIn">Sign-In</a></li>
+                    <li><a href="#Pre">Pre-Game</a></li>
+                    <li><a href="#Auto">Auto</a></li>
+                    <li><a href="#Tele">Tele-Op</a></li>
+                    <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
+                    <br />
+                    <br />
+                    <li className="showalliance">Team ????</li>
+                    <li>1/2/3</li>
+                </ul>
+            </div>
+
         </Page>
     );
 }
 
-function SignIn(props) {
-    return (
-        <Page selected={props.selected} className="page" id="sign-in">
-        <div>
-            <p className="section-label" id="SignIn">Energized</p>
 
-            <div className="textArea">
-                <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input"/>
-                <br />
-                <label className="item-label" htmlFor="Competition"><strong>Event Name</strong> </label>
-                <br />
-                <br />
-                <select name="Competition" id="Competition" defaultValue="Choose">
-                    <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                    <option value="Hueneme">Port Hueneme</option>
-                </select>
-                {/* <input type="submit" className="SAVE" value="Sign In" /> */}
-            </div>
+function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
+    return (
+        <div>
+            <p className="section-label" id="SignIn">Match Scouting</p>
+
+            <form onSubmit={handleSubmit} action="#">
+                <div className="textArea">
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
+                    <br />
+                    <select name="Competition" id="Ename" defaultValue="Choose" >
+
+                        <option value="LAR">LAR</option>
+                    </select>
+                    <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
+                    <div className="allianceSelect">
+                        <MultiButton items={[['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3'], ['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3']]} id="Team_Alliance" />
+
+                    </div>
+                    {/* Off value at index 0, ON value at index 1 */}
+
+                    <br />
+                    {showCheck && <div class="check"></div>}
+                    <input type="submit" className="submit-button" value="Sign In" />
+
+                    {/* when submitted 
+                        <>checkmark image</> */}
+
+                </div>
+            </form>
         </div>
-        </Page>
     );
 }
 
 function PreGame(props) {
+    useEffect(() => props.setTeamOption(options[0]), []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleMatchChange = (event) => {
+        props.setMatchNumber(parseInt(event.target.value));
+    }
+
     return (
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label" id="Pre">Pre-Game</p>
 
             <div className="textArea">
-                {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
-                <input type="text" id="Match_Number" name="Match_Number" placeholder="Match Number" />
-                <br></br>
-                <br></br>
-                {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
-                <input type="text" id="Team_Number" name="Team_Number" placeholder="Team Number" />
 
-                <div className="textArea">
+                <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" value={props.matchNumber} onChange={handleMatchChange} />
 
-                    <h1><strong>Team Alliance</strong></h1>
-                    <div className="align-radio">
-                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3']} name="Team_Alliance" />
-                        </div>
-                        <br></br>
-                        <div className="align-radio">
-                        <RadioButtons items={['Blue 1', 'Blue 2', 'Blue 3']} name="Team_Alliance" />
-                         </div>
-                    <br></br>
-                    <br></br>
-                    <h1><strong>No show robot?</strong></h1>
-                    <ButtonInput on_label="Robot did not show" off_label="Robot showed" id="Show_Time" />
-                </div>
+                <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
+                {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
+
+                <SearchBar setSelectedOption={props.setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
+
             </div>
         </Page>
 
     );
 }
+
 
 
 function Auto(props) {
@@ -86,38 +107,44 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
-            <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' id="Mobility" />
-             {/* <button type="button">Mobility?</button> */}
 
-                {/* <h2>Mobility</h2> */}
-                {/* <div className="container">
-                    <div className="center">
-                        <button>Mobility</button>
-                    </div>
-                </div> 
-                <br></br>
-                <input type="checkbox" name="mobility"></input>
-                <label htmlFor="mobility" className="label-size">Mobility</label> */}
-                <br></br>
-                <br></br>
-                <br></br>
-                <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <RadioButtons items={['Docked', 'Engaged', 'No points']} name="Auto_Station" />
+
+                    <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
+
                 </div>
-                <h1>Cones</h1>
-                <NumberInput id="Auto_Cone_High" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Auto_Cube_High" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Low" />
+
+                <br />
+                <p className="itemLabel">CHARGING STATION</p>
+                <div className="align-radio">
+
+                    <MultiButton items={[['NO POINTS', 'No points'], ['FAILED DOCK', 'Failed Dock'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
+
+                </div>
+
+                <div className="gallery">
+
+                    <div className="test">
+                        <h2>High</h2>
+                        <br></br>
+                        <h2>Mid</h2>
+                        <br></br>
+                        <h2>Low</h2>
+                    </div>
+
+                    <div className="cones">
+                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
+                        <NumberInput id="Auto_Cone_High" />
+                        <NumberInput id="Auto_Cone_Mid" />
+                        <NumberInput id="Auto_Cone_Low" />
+                    </div>
+                    <div className="cubes">
+                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
+                        <NumberInput id="Auto_Cube_High" />
+                        <NumberInput id="Auto_Cube_Mid" />
+                        <NumberInput id="Auto_Cube_Low" />
+                    </div>
+                </div>
             </div>
         </Page>
     );
@@ -125,66 +152,97 @@ function Auto(props) {
 
 function TeleOp(props) {
     return (
-        <Page selected={props.selected} id="tele-op">
-            <p className="section-label" id="Tele">Teleop/Endgame</p>
+        <Page selected={props.selected} id="Tele">
+            <p className="section-label">Teleop/Endgame</p>
+
+            <div className="textArea">
+
+                <div className="gallery">
+
+                    <div className="test">
+                        <h2>High</h2>
+                        <br></br>
+                        <h2>Mid</h2>
+                        <br></br>
+                        <h2>Low</h2>
+                    </div>
+
+                    <div className="cones">
+
+                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
+                        <NumberInput id="Tele_Cone_High" />
+                        <NumberInput id="Tele_Cone_Mid" />
+                        <NumberInput id="Tele_Cone_Low" />
+                    </div>
+                    <div className="cubes">
+                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
+                        <NumberInput id="Tele_Cube_High" />
+                        <NumberInput id="Tele_Cube_Mid" />
+                        <NumberInput id="Tele_Cube_Low" />
+                    </div>
+                </div>
+
+            </div>
+
 
             <div className="textArea">
                 <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="Tele_Station" />
+
+                    <MultiButton items={[['NO POINTS', 'No points'], ['PARKED', 'Parked'], ['FAILED DOCK', 'Failed Dock'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Tele_Station" />
+
                 </div>
-                <h1>Cones</h1>
-                <NumberInput id="Tele_Cone_High" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Tele_Cube_High" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Low" />
+
             </div>
         </Page>
     );
-}
+    }
 // charge station
 // button for mobility
 function SavePage(props) {
     return (
 
-        <Page selected={props.selected} id="save-page">
-
-
-            <p className="section-label" id="Save">Submit</p>
+        <Page selected={props.selected} id="Save">
+            <p className="section-label">Submit</p>
             <div className="textArea">
-                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
-                {/* <h1>Some things you could comment are:</h1>
-                <div className="bullet-points">
-                    <li className="questions">Placeholder Questions?</li>
-                    <li className="questions">Is it successful?</li>
-                    <li className="questions">Does it move?</li>
-                    <li className="questions">Conesistent?</li>
-                    <li className="questions">Can the robot?</li>
-                    <li className="questions">Does it?</li>
-                </div>
-                <br /> */}
 
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" />
+                <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
+                <br />
+                <br />
+                <div>
+                    {props.connected
+                        ? <input type="submit" className="submit-button" value="Submit & Clear"></input>
+                        : <p className='connerror'>Tablet not connected</p>
+                    }
+                    <br />
+                    <br />
+                    <div className="nonSubmit">
+                        <p className="reminder">DO NOT use this section unless instructed</p>
+                        {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
+                        {/* <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} /> */}
+                        <ButtonInput on_label="Clicked!" className="noshow" off_label='No Show Robot?' value="noshow" id="No_Show_Robot" />
+                    </div>
+                </div>
+
+
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
                 <label className="item-label" htmlFor="continue">Save and continue</label>
-                <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                <input type="submit" className="submit-button"></input>
+                 */}
+                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
-
             </div>
+            <div>
+                <p className="version">Version LAR.0.1</p>
+            </div>
+
 
         </Page>
     );
 }
+
+
 
 export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };
